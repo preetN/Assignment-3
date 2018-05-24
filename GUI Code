@@ -1,0 +1,214 @@
+import java.awt.EventQueue;
+import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import java.awt.Color;
+
+public class Account {
+
+	private JFrame frame;
+	private JTextField name;
+	private JTextArea odr;
+	private JLabel ttlamt;
+	int i=0;//variable is declared to check Quantity in Qty Label
+	private JLabel Qty1;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Account window = new Account();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Account() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(240, 248, 255));
+		frame.setTitle("Order Coffee");//Set title is used to show window name on window
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel Name = new JLabel("Name");//Label 1 used
+		Name.setFont(new Font("Arial", Font.ITALIC, 11));
+		Name.setBounds(22, 11, 46, 14);
+		frame.getContentPane().add(Name);
+		
+		name = new JTextField();//Text field 1 used
+		name.setBackground(new Color(240, 255, 240));
+		name.setBounds(100, 8, 86, 20);
+		frame.getContentPane().add(name);
+		name.setColumns(10);
+		
+		JLabel choice = new JLabel("Choice");//Label 2 used
+		choice.setFont(new Font("Arial", Font.ITALIC, 11));
+		choice.setBounds(22, 47, 46, 14);
+		frame.getContentPane().add(choice);
+		
+		JPanel panel = new JPanel();//Panel is used
+		panel.setBackground(new Color(240, 248, 255));
+		panel.setBounds(100, 56, 108, 117);
+		frame.getContentPane().add(panel);
+		
+		JCheckBox cof1 = new JCheckBox("Hot choclate $4");//Checkbox 1
+		cof1.setBackground(new Color(240, 248, 255));
+		cof1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cof1.isSelected()) 
+				{
+					i=i+1;
+					Qty1.setText(Integer.toString(i));
+				}
+			}
+		});
+		panel.add(cof1);
+		
+		JCheckBox cof2 = new JCheckBox("Cappuccino $4");//Checkbox 2
+		cof2.setBackground(new Color(240, 248, 255));
+		cof2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cof2.isSelected()) {
+					i=i+1;
+					Qty1.setText(Integer.toString(i));	
+				}
+			}
+		});
+		panel.add(cof2);
+		
+		JCheckBox cof3 = new JCheckBox("Latte    $3.50");// Checkbox 3
+		cof3.setBackground(new Color(240, 248, 255));
+		cof3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cof3.isSelected()) {
+					i=i+1;
+					Qty1.setText(Integer.toString(i));	
+				}
+			}
+		});
+		panel.add(cof3);
+		
+		JCheckBox cof4 = new JCheckBox("Flat white $3.75"); //Checkbox 4
+		cof4.setBackground(new Color(240, 248, 255));
+		cof4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(cof4.isSelected()) {
+					i=i+1;
+					Qty1.setText(Integer.toString(i));
+					}
+			}
+		});
+		panel.add(cof4);
+		
+		JButton Reset = new JButton("Reset");// Buttton 1
+		Reset.setBackground(new Color(102, 205, 170));
+		Reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cof1.setSelected(false);
+				cof2.setSelected(false);
+				cof3.setSelected(false);
+				cof4.setSelected(false);
+				name.setText("");
+				odr.setText("");
+				i=0;
+				Qty1.setText("");
+				ttlamt.setText("");
+			}
+		});
+		Reset.setBounds(10, 215, 89, 23);
+		frame.getContentPane().add(Reset);
+		
+		JButton Exit = new JButton("Exit");//Button 2
+		Exit.setBackground(new Color(102, 205, 170));
+		Exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		Exit.setBounds(149, 215, 89, 23);
+		frame.getContentPane().add(Exit);
+		
+		JLabel Qty = new JLabel("No of Items");//Label 3
+		Qty.setFont(new Font("Arial", Font.ITALIC, 11));
+		Qty.setBounds(22, 190, 68, 14);
+		frame.getContentPane().add(Qty);
+		
+		JLabel lblOrderSummary = new JLabel("Order summary");//Label 4
+		lblOrderSummary.setFont(new Font("Arial", Font.ITALIC, 11));
+		lblOrderSummary.setBounds(286, 11, 115, 14);
+		frame.getContentPane().add(lblOrderSummary);
+		
+		Qty1 = new JLabel("");//Label 5
+		Qty1.setBounds(100, 190, 46, 14);
+		frame.getContentPane().add(Qty1);
+		
+		JButton calc = new JButton("Calculate");//Button 3
+		calc.setBackground(new Color(102, 205, 170));
+		calc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double amt=0.0;
+				ArrayList<String> myList =new ArrayList<String>(5);//ArrayList to show in scrollPane
+				myList.add("Name: "+name.getText());
+				myList.add("Items in order");
+				if(cof1.isSelected()) { amt=amt+4; myList.add("Hot choclate $4");}
+				if(cof2.isSelected()) { amt=amt+4;myList.add("Cappuccino $4");}
+				if(cof3.isSelected()) { amt=amt+3.5;myList.add("Latte    $3.50");}
+				if(cof4.isSelected()) { amt=amt+3.75;myList.add("Flat white $3.75");}
+				ttlamt.setText(Double.toString(amt));
+				myList.add("Total amount "+ttlamt.getText());
+				for(String s:myList)
+					odr.append("\n"+s+"\n");//ArrayList is appended to the text area
+			}
+		});
+		calc.setBounds(271, 166, 89, 23);
+		frame.getContentPane().add(calc);
+		
+		JLabel Total = new JLabel("Total");//Label 6
+		Total.setFont(new Font("Arial", Font.ITALIC, 11));
+		Total.setBounds(271, 219, 46, 14);
+		frame.getContentPane().add(Total);
+		
+		ttlamt = new JLabel("");//Label 7
+		ttlamt.setBounds(327, 219, 46, 14);
+		frame.getContentPane().add(ttlamt);
+		
+		JScrollPane scrollPane = new JScrollPane();//Scroll Pane
+		scrollPane.setBounds(277, 47, 124, 92);
+		frame.getContentPane().add(scrollPane);
+		
+		odr = new JTextArea();//Text area 
+		odr.setBackground(new Color(240, 255, 240));
+		scrollPane.setViewportView(odr);
+		odr.setText("");
+		odr.setRows(4);
+	}
+}
